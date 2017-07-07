@@ -38,6 +38,4 @@ ReactDOM.render(
 );
 
 
-
-
 registerServiceWorker();
