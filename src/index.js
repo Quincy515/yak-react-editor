@@ -34,7 +34,7 @@ ReactDOM.render(
         tabSize: 4,
     }}
   />,
-  document.getElementById('root')
+  document.getElementById('editor')
 );
 
 
