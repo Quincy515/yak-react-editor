@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import MyAceEditor from './component/ace-editor'
+import ViewEditor from './component/view_editor'
 
 // Render editor
 ReactDOM.render(
-  <MyAceEditor/>,
+  <ViewEditor/>,
   document.getElementById('root')
 );
 
