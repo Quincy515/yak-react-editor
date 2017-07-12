@@ -1,15 +1,22 @@
-import React from 'react'
+/* import React from 'react'
 import Button from 'antd/lib/button';
 import '../css/style.css'
 // import p5 from 'p5'
 
+
 class PlayButton extends React.Component {
+    componentWillMount() {
+
+    }
+    componentDidMount() {
+
+    }
     constructor() {
         super()
     }
-    componentDidMount() {
-    }
+    
     executeCode() {
+        
     }
     render() {
         return (
@@ -20,4 +27,4 @@ class PlayButton extends React.Component {
         )
     }
 }
-export default PlayButton
+export default PlayButton */
