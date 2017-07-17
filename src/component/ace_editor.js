@@ -82,17 +82,17 @@ class MyAceEditor extends React.Component {
         var code = this.state.value
         code += `\n new p5();\n`
         this.setState({
-            value: code
+            value: this.code
         })
         var userScript = sketchFrame.contentWindow.document.createElement('script')
         userScript.type = 'text/javascript'
         userScript.text = code
         userScript.async = false
         sketchFrame.contentWindow.document.body.appendChild(userScript)
-        this.updateIFrameContents()        
+        // this.updateIFrameContents(sketchFrame.src)        
     }
-    updateIFrameContents(){
-        
+    updateIFrameContents(src){
+        // document.getElementById('bannerIframe').src = src
     }
     
     render() {

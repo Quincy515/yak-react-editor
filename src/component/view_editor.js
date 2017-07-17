@@ -1,6 +1,8 @@
 import React from 'react'
-import MyAceEditor from './ace_editor'
+// import MyAceEditor from './ace_editor'
 // import PlayButton from './play_editor'
+import MyAceEditor from './test'
+
 
 /**
  * PlayButton 和 MyAceEditor 组件的嵌套
