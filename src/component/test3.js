@@ -65,7 +65,7 @@ class MyAceEditor extends React.Component {
         var code = this.state.value
         code += `\n new p5();\n`
         this.setState({
-            value: this.code
+            value: code
         })
         var userScript = sketchFrame.contentWindow.document.createElement('script')
         userScript.type = 'text/javascript'

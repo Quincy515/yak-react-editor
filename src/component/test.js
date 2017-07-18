@@ -17,11 +17,11 @@ import '../css/style.css'
 
 const defaultValue =
     `function setup(){
-    createCanvas(100,100);
+    createCanvas(200,200);
+    background(100);
 }
 function draw(){
-    fill(100,50,80);
-    ellipse(20,20,20,20);
+    ellipse(40,40,80,80);
 }`
 
 
@@ -38,38 +38,50 @@ class MyAceEditor extends React.Component {
             value: defaultValue,
             _isMounted: false
         }
+        this.onChange = this.onChange.bind(this)
+    }
+    onChange(newValue) {
+        this.setState({
+            value: newValue
+        })
+        // console.log("value", this.state.value)
+
     }
     executeCode(event) {
         event.preventDefault()// 阻止默认行为
         let myiframe = document.getElementById("myiframe")
         var iwindow = ReactDOM.findDOMNode(myiframe).contentWindow
         var idoc = ReactDOM.findDOMNode(myiframe).contentDocument
-        var code = this.state.value
-        code += `\n new p5();\n`
-        this.setState({
-            value: this.code
-        })
-        
         var userScript = idoc.createElement('script')
         userScript.type = 'text/javascript'
-        userScript.text = code
-        userScript.async = false
+        userScript.text = this.state.value + `\n new p5();`
+        userScript.async = true
         iwindow.document.body.appendChild(userScript)
+        this.initialIframe()
+    }
+
+    initialIframe() {
+        var iFrameNode = this.refs.sketchFrame
+        var frameDoc = iFrameNode.contentWindow.document
+        frameDoc.write(`<!doctype html><html><head><script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script></head><body></body></html>`)
+        frameDoc.close()
     }
     render() {
         return (
             <div>
-                <iframe 
-                    id="myiframe" 
-                    title="myiframe" 
-                    frameBorder="0" 
-                    width="100%" 
-                    height="400" 
+                <iframe
+                    id="myiframe"
+                    ref="sketchFrame"
+                    title="myiframe"
+                    frameBorder="0"
+                    width="100%"
+                    height="400"
                     src="./_sketch.html">
                 </iframe>
                 <AceEditor
                     mode="javascript"
                     theme="github"
+                    onChange={this.onChange}
                     name="yak_editor"
                     editorProps={{ $blockScrolling: true }}
                     fontSize={16}
