@@ -10,6 +10,7 @@ import 'brace/snippets/javascript';
 // import 'brace/ext/searchbox';
 import Button from 'antd/lib/button';
 import '../css/style.css'
+import SplitPane from 'react-split-pane'
 
 /**
  * 实现AceEditor功能
@@ -55,35 +56,41 @@ class MyAceEditor extends React.Component {
     render() {
         return (
             <div>
-                <iframe
-                    id="myiframe"
-                    ref="sketchFrame"
-                    title="myiframe"
-                    frameBorder="0"
-                    width="100%"
-                    height="400"
-                    src="./_sketch.html">
-                </iframe>
-                <AceEditor
-                    mode="javascript"
-                    theme="github"
-                    onChange={this.onChange}
-                    name="yak_editor"
-                    editorProps={{ $blockScrolling: true }}
-                    fontSize={16}
-                    showPrintMargin={true}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    value={this.state.value}
-                    setOptions={{
-                        enableBasicAutocompletion: true,
-                        enableLiveAutocompletion: true,
-                        enableSnippets: true,
-                        showLineNumbers: true,
-                        tabSize: 4,
-                    }}
-                />
-                <Button type="primary" shape="circle" icon="caret-right" size="large" onClick={this.executeCode.bind(this)} />
+                <SplitPane split="vertical" minSize={450} defaultSize={800} primary="second">
+                    <div>
+                        <iframe
+                            id="myiframe"
+                            ref="sketchFrame"
+                            title="myiframe"
+                            frameBorder="0"
+                            width="100%"
+                            height="400"
+                            src="./_sketch.html">
+                        </iframe>
+                    </div>
+                    <div>
+                        <AceEditor
+                            mode="javascript"
+                            theme="github"
+                            onChange={this.onChange}
+                            name="yak_editor"
+                            editorProps={{ $blockScrolling: true }}
+                            fontSize={16}
+                            showPrintMargin={true}
+                            showGutter={true}
+                            highlightActiveLine={true}
+                            value={this.state.value}
+                            setOptions={{
+                                enableBasicAutocompletion: true,
+                                enableLiveAutocompletion: true,
+                                enableSnippets: true,
+                                showLineNumbers: true,
+                                tabSize: 4,
+                            }}
+                        />
+                        <Button type="primary" shape="circle" icon="caret-right" size="large" onClick={this.executeCode.bind(this)} />
+                    </div>
+                </SplitPane>
             </div>
         )
     }
